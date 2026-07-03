@@ -1,65 +1,94 @@
-import Image from "next/image";
+import Link from "next/link";
+import GlassPrism from "@/components/GlassPrism";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="flex flex-col">
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-8">
+        <GlassPrism className="w-[600px] h-[800px] right-[-100px] top-[-100px] opacity-60" />
+        <div className="relative z-10 max-w-[90vw]">
+          <p className="text-[18px] sm:text-[22px] font-[400] text-bone-white/80 mb-4 tracking-normal">
+            Design &bull; Develop &bull; Deliver
+          </p>
+          <h1 className="text-display-xl font-[400] text-bone-white leading-[1] tracking-[-0.02em] max-w-[14ch]">
+            Turning <span className="font-[700]">ideas</span> into digital craft
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+          <div className="mt-12 flex gap-6">
+            <Link
+              href="/work"
+              className="inline-block text-[14px] font-[400] tracking-[0.01em] text-bone-white no-underline px-[15px] py-[9px] border border-bone-white uppercase"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              View Work
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-block text-[14px] font-[400] tracking-[0.01em] text-gunmetal-blue no-underline px-[15px] py-[9px] border border-gunmetal-blue uppercase"
             >
-              Learning
-            </a>{" "}
-            center.
+              Get in Touch
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Manifesto Section */}
+      <section className="relative min-h-[80vh] flex items-center px-8 py-32">
+        <div className="max-w-[90vw]">
+          <p className="text-[18px] font-[400] text-bone-white/70 mb-6 tracking-normal">
+            Philosophy
+          </p>
+          <p className="text-heading font-[400] text-bone-white leading-[1.13] tracking-[-0.02em] max-w-[20ch]">
+            I build products that live at the intersection of <span className="font-[700]">design</span>, <span className="font-[700]">technology</span>, and <span className="font-[700]">purpose</span>.
+          </p>
+          <p className="text-[18px] font-[400] text-bone-white/80 mt-10 max-w-[60ch] leading-[1.5]">
+            From concept to deployment, I architect full-stack experiences with modern frameworks,
+            clean systems thinking, and an obsessive attention to craft.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Work Preview Section */}
+      <section className="relative min-h-screen flex flex-col justify-center px-8 py-32">
+        <p className="text-[18px] font-[400] text-bone-white/70 mb-12 tracking-normal uppercase">
+          Selected Work
+        </p>
+        <div className="flex flex-col gap-24">
+          {[
+            { title: "Project One", tag: "Full-Stack Application", href: "/work" },
+            { title: "Project Two", tag: "Design System", href: "/work" },
+            { title: "Project Three", tag: "AI-Powered Tool", href: "/work" },
+          ].map((project, i) => (
+            <Link
+              key={i}
+              href={project.href}
+              className="group flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-graphite/30 no-underline"
+            >
+              <div>
+                <p className="text-[22px] font-[400] text-bone-white/50 mb-1">{String(i + 1).padStart(2, "0")}</p>
+                <h2 className="text-[36px] sm:text-[56px] font-[400] text-bone-white leading-[1.13] tracking-[-0.02em] group-hover:opacity-70 transition-opacity">
+                  {project.title}
+                </h2>
+              </div>
+              <p className="text-[17px] font-[400] text-bone-white/60">{project.tag}</p>
+            </Link>
+          ))}
         </div>
-      </main>
+      </section>
+
+      {/* CTA Section */}
+      <section className="relative min-h-[60vh] flex items-center justify-center px-8 py-32">
+        <div className="text-center">
+          <p className="text-display font-[400] text-bone-white leading-[1] tracking-[-0.02em] max-w-[16ch] mx-auto">
+            Let&apos;s build something <span className="font-[700]">remarkable</span>
+          </p>
+          <Link
+            href="/contact"
+            className="inline-block mt-12 text-[14px] font-[400] tracking-[0.01em] text-bone-white no-underline px-[15px] py-[9px] border border-bone-white uppercase"
+          >
+            Start a Project
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }
